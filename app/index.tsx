@@ -38,6 +38,8 @@ import { TSupportedThemes, ThemeContext } from './theme';
 import ChangePasscodeView from './views/ChangePasscodeView';
 import ScreenLockedView from './views/ScreenLockedView';
 
+
+
 RNScreens.enableScreens();
 initStore(store);
 

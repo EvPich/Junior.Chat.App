@@ -9,7 +9,7 @@
 	<key>bugsnag</key>
 	<dict>
 		<key>apiKey</key>
-		<string>apiKeyValue</string>
+		<string>d84b428ec99a81c45fe5e921d1258129</string>
 	</dict>
   <key>CADisableMinimumFrameDurationOnPhone</key>
   <true/>

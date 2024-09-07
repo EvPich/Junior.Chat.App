@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "520505264331",
+    "project_id": "rocketchat-f59c2",
+    "storage_bucket": "rocketchat-f59c2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:520505264331:android:f82b06749094a5282cb34e",
+        "android_client_info": {
+          "package_name": "chat.rocket.reactnative"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAyad3i9BbJUUe6fy4z94xq-JsUz2FHp-c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
