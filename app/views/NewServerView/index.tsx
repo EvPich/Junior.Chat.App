@@ -414,7 +414,7 @@ class NewServerView extends React.Component<INewServerViewProps, INewServerViewS
 						</>
 					) : null}
 				</FormContainerInner>
-				{this.renderCertificatePicker()}
+				{/* {this.renderCertificatePicker()} */}
 			</FormContainer>
 		);
 	}

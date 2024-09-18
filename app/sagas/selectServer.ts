@@ -101,11 +101,12 @@ const getServerInfoSaga = function* getServerInfoSaga({ server, raiseError = tru
 	try {
 		const serverInfoResult = yield* call(getServerInfo, server);
 		if (raiseError) {
-			if (!serverInfoResult.success) {
-				Alert.alert(I18n.t('Oops'), serverInfoResult.message);
-				yield put(serverFailure());
-				return;
-			}
+			// IVAN COMMENT
+			// if (!serverInfoResult.success) {
+			// 	Alert.alert(I18n.t('Oops'), serverInfoResult.message);
+			// 	yield put(serverFailure());
+			// 	return;
+			// }
 			const websocketInfo = yield* call(Services.getWebsocketInfo, { server });
 			if (!websocketInfo.success) {
 				Alert.alert(I18n.t('Oops'), websocketInfo.message);
