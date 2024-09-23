@@ -9,16 +9,16 @@ export default StyleSheet.create({
 	},
 	container: {
 		paddingVertical: 4,
-		width: '100%',
+		// width: '100%',
 		paddingHorizontal: 14,
-		flexDirection: 'column'
+		flexDirection: 'column',
 	},
 	contentContainer: {
 		flex: 1
 	},
 	messageContent: {
-		flex: 1,
-		marginLeft: 46
+		// flex: 1,
+		// marginLeft: 46
 	},
 	messageContentWithHeader: {
 		marginLeft: 10

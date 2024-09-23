@@ -24,6 +24,7 @@ interface IRightIcons {
 	hasError: boolean;
 	isTranslated: boolean;
 	pinned?: boolean;
+	otherUserMessage?:boolean;
 }
 
 const RightIcons = ({
@@ -34,16 +35,21 @@ const RightIcons = ({
 	isReadReceiptEnabled,
 	unread,
 	isTranslated,
-	pinned
-}: IRightIcons): React.ReactElement => (
-	<View style={styles.actionIcons}>
-		<Pinned pinned={pinned} testID={`${msg}-pinned`} />
-		<Encrypted type={type} />
-		<Edited testID={`${msg}-edited`} isEdited={isEdited} />
-		<MessageError hasError={hasError} />
-		<Translated isTranslated={isTranslated} />
-		<ReadReceipt isReadReceiptEnabled={isReadReceiptEnabled} unread={unread} />
-	</View>
-);
+	pinned,
+	otherUserMessage
+}: IRightIcons): React.ReactElement => {
+
+	console.log('OtHER',otherUserMessage)
+
+	return(
+		<View style={styles.actionIcons}>
+			<Pinned pinned={pinned} testID={`${msg}-pinned`} />
+			<Encrypted type={type} />
+			<Edited testID={`${msg}-edited`} isEdited={isEdited} />
+			<MessageError hasError={hasError} />
+			<Translated isTranslated={isTranslated} />
+			{!otherUserMessage && <ReadReceipt isReadReceiptEnabled={isReadReceiptEnabled} unread={unread} />}
+		</View>
+)};
 
 export default RightIcons;

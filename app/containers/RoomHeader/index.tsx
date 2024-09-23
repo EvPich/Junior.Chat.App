@@ -21,6 +21,7 @@ interface IRoomHeaderContainerProps {
 	sourceType?: IOmnichannelSource;
 	visitor?: IVisitor;
 	disabled?: boolean;
+	data?:any
 }
 
 const RoomHeaderContainer = React.memo(
@@ -38,7 +39,8 @@ const RoomHeaderContainer = React.memo(
 		type,
 		sourceType,
 		visitor,
-		disabled
+		disabled,
+		data
 	}: IRoomHeaderContainerProps) => {
 		let subtitle: string | undefined;
 		let statusVisitor: TUserStatus | undefined;
@@ -72,6 +74,7 @@ const RoomHeaderContainer = React.memo(
 
 		return (
 			<RoomHeader
+				data={data}
 				roomUserId={roomUserId}
 				prid={prid}
 				tmid={tmid}

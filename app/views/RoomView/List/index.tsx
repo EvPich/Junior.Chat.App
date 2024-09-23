@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
 			android: {
 				scaleY: -1
 			}
-		})
+		}),
 	}
 });
 

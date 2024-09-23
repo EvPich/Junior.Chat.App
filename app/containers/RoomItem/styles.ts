@@ -47,7 +47,7 @@ export default StyleSheet.create({
 		width: '100%',
 		flexDirection: 'row',
 		alignItems: 'center',
-		justifyContent: 'center'
+		justifyContent: 'center',
 	},
 	date: {
 		fontSize: 13,

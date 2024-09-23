@@ -10,10 +10,10 @@ import { SCROLL_LIMIT } from '../constants';
 
 const styles = StyleSheet.create({
 	list: {
-		flex: 1
+		flex: 1,
 	},
 	contentContainer: {
-		paddingTop: 10
+		paddingTop: 10,
 	}
 });
 

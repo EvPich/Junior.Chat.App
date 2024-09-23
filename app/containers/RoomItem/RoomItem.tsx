@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { Text, View } from 'react-native';
 
 import styles from './styles';
 import Wrapper from './Wrapper';
@@ -53,7 +53,8 @@ const RoomItem = ({
 	showAvatar,
 	displayMode,
 	sourceType,
-	hideMentionStatus
+	hideMentionStatus,
+	item
 }: IRoomItemProps) => (
 	<Touchable
 		onPress={onPress}
@@ -100,9 +101,10 @@ const RoomItem = ({
 						) : null}
 						<Title name={name} hideUnreadStatus={hideUnreadStatus} alert={alert} />
 						{autoJoin ? <Tag testID='auto-join-tag' name={I18n.t('Auto-join')} /> : null}
+						<Text style={{color:'#7B838C',fontSize:14,marginRight:8}}>{item?._raw?.users_count} participants</Text>
 						<UpdatedAt date={date} hideUnreadStatus={hideUnreadStatus} alert={alert} />
 					</View>
-					<View style={styles.row} testID='room-item-last-message-container'>
+					<View style={[styles.row]} testID='room-item-last-message-container'>
 						<LastMessage
 							lastMessage={lastMessage}
 							type={type}
@@ -125,7 +127,7 @@ const RoomItem = ({
 				</>
 			) : (
 				<View style={[styles.titleContainer, styles.flex]}>
-					<TypeIcon
+					{/* <TypeIcon
 						userId={userId}
 						type={type}
 						prid={prid}
@@ -135,8 +137,11 @@ const RoomItem = ({
 						size={22}
 						style={{ marginRight: 8 }}
 						sourceType={sourceType}
-					/>
-					<Title name={name} hideUnreadStatus={hideUnreadStatus} alert={alert} />
+					/> */}
+					<View style={{flexDirection:'column',flex:1}}>
+						<Title name={name} hideUnreadStatus={hideUnreadStatus} alert={alert} />
+						<Text style={{color:'#7B838C'}}>{item?._raw?.users_count} participants</Text>
+					</View>
 					{autoJoin ? <Tag name={I18n.t('Auto-join')} /> : null}
 					<View style={styles.wrapUpdatedAndBadge}>
 						<UpdatedAt date={date} hideUnreadStatus={hideUnreadStatus} alert={alert} />

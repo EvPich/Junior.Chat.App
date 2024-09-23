@@ -120,6 +120,8 @@ export interface IMessage extends IMessageRepliedThread, IMessageInner, IMessage
 	isTemp: boolean;
 	isHeader: boolean;
 	hasError: boolean;
+	otherUserMessage:boolean;
+	isGroupRoom?:boolean;
 	style: any;
 	// style: ViewStyle;
 	onLongPress?: (item: TAnyMessageModel) => void;

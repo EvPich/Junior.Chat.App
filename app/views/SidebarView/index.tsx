@@ -26,6 +26,8 @@ import * as List from '../../containers/List';
 import { IActionSheetProvider, showActionSheetRef, withActionSheet } from '../../containers/ActionSheet';
 import { setNotificationPresenceCap } from '../../actions/app';
 import { SupportedVersionsWarning } from '../../containers/SupportedVersions';
+import { useUserStatusColor } from '../../lib/hooks/useUserStatusColor';
+import { TouchableOpacity } from 'react-native';
 
 interface ISidebarState {
 	showStatus: boolean;
@@ -222,14 +224,15 @@ class Sidebar extends Component<ISidebarProps, ISidebarState> {
 		const routeName = isMasterDetail ? 'AdminPanelView' : 'AdminPanelStackNavigator';
 		return (
 			<>
-				<List.Separator />
+				{/* <List.Separator /> */}
 				<SidebarItem
 					text={I18n.t('Admin_Panel')}
-					left={<CustomIcon name='settings' size={20} color={themes[theme!].fontTitlesLabels} />}
+					left={<CustomIcon name='settings' size={30} color={themes[theme!].fontTitlesLabels} />}
 					onPress={() => this.sidebarNavigate(routeName)}
 					testID='sidebar-admin'
 					theme={theme!}
 					current={this.currentItemKey === routeName}
+					textColor='#7F8E9D'
 				/>
 			</>
 		);
@@ -241,35 +244,39 @@ class Sidebar extends Component<ISidebarProps, ISidebarState> {
 			<>
 				<SidebarItem
 					text={I18n.t('Chats')}
-					left={<CustomIcon name='message' size={20} color={themes[theme!].fontTitlesLabels} />}
+					left={<CustomIcon name='message' size={30} color={this.currentItemKey === 'ChatsStackNavigator' ? '#B7C4D1' : themes[theme!].fontTitlesLabels} />}
 					onPress={() => this.sidebarNavigate('ChatsStackNavigator')}
 					testID='sidebar-chats'
 					theme={theme!}
 					current={this.currentItemKey === 'ChatsStackNavigator'}
+					textColor='#7F8E9D'
 				/>
 				<SidebarItem
 					text={I18n.t('Profile')}
-					left={<CustomIcon name='user' size={20} color={themes[theme!].fontTitlesLabels} />}
+					left={<CustomIcon name='user' size={30} color={this.currentItemKey === 'ProfileStackNavigator' ? '#B7C4D1' : themes[theme!].fontTitlesLabels} />}
 					onPress={() => this.sidebarNavigate('ProfileStackNavigator')}
 					testID='sidebar-profile'
 					theme={theme!}
 					current={this.currentItemKey === 'ProfileStackNavigator'}
+					textColor='#7F8E9D'
 				/>
 				<SidebarItem
 					text={I18n.t('Display')}
-					left={<CustomIcon name='sort' size={20} color={themes[theme!].fontTitlesLabels} />}
+					left={<CustomIcon name='sort' size={30} color={this.currentItemKey === 'DisplayPrefStackNavigator' ? '#B7C4D1' : themes[theme!].fontTitlesLabels} />}
 					onPress={() => this.sidebarNavigate('DisplayPrefStackNavigator')}
 					testID='sidebar-display'
 					theme={theme!}
 					current={this.currentItemKey === 'DisplayPrefStackNavigator'}
+					textColor='#7F8E9D'
 				/>
 				<SidebarItem
 					text={I18n.t('Settings')}
-					left={<CustomIcon name='administration' size={20} color={themes[theme!].fontTitlesLabels} />}
+					left={<CustomIcon name='administration' size={30} color={this.currentItemKey === 'SettingsStackNavigator' ? '#B7C4D1' : themes[theme!].fontTitlesLabels} />}
 					onPress={() => this.sidebarNavigate('SettingsStackNavigator')}
 					testID='sidebar-settings'
 					theme={theme!}
 					current={this.currentItemKey === 'SettingsStackNavigator'}
+					textColor='#7F8E9D'
 				/>
 				{this.renderAdmin()}
 			</>
@@ -277,6 +284,11 @@ class Sidebar extends Component<ISidebarProps, ISidebarState> {
 	};
 
 	renderCustomStatus = () => {
+
+		function capitalizeFirstLetter(str:string) {
+			return str.charAt(0).toUpperCase() + str.slice(1);
+		  }
+
 		const { user, theme, Presence_broadcast_disabled, notificationPresenceCap } = this.props;
 
 		let status = user?.status;
@@ -291,17 +303,34 @@ class Sidebar extends Component<ISidebarProps, ISidebarState> {
 			right = undefined;
 		}
 
+		const StatusElement = ()=>{
+			return(
+				<View style={{flexDirection:'row',gap:3,alignItems:'center'}}>
+					<Text style={{fontSize:18}}>
+						Status:
+					</Text>
+					<Status size={16} status={status} />
+				</View>
+			)
+		}
+
+		const capStatus = capitalizeFirstLetter(status)
+
 		return (
 			<SidebarItem
-				text={user.statusText || I18n.t('Edit_Status')}
-				left={<Status size={24} status={status} />}
+				isStatus={true}
+				text={user.statusText || capStatus}
+				left={<StatusElement/>}
 				theme={theme!}
 				right={right}
 				onPress={() => (Presence_broadcast_disabled ? this.onPressPresenceLearnMore() : this.sidebarNavigate('StatusView'))}
 				testID={`sidebar-custom-status-${user.status}`}
+				status={status}
 			/>
 		);
 	};
+
+	
 
 	renderSupportedVersionsWarn = () => {
 		const { theme, supportedVersionsStatus } = this.props;
@@ -321,14 +350,25 @@ class Sidebar extends Component<ISidebarProps, ISidebarState> {
 	};
 
 	render() {
-		const { user, Site_Name, baseUrl, useRealName, allowStatusMessage, isMasterDetail, theme } = this.props;
+		const { user, Site_Name, baseUrl, useRealName, allowStatusMessage, isMasterDetail, theme, navigation} = this.props;
+
 
 		if (!user) {
 			return null;
 		}
+
 		return (
-			<SafeAreaView testID='sidebar-view' style={{ backgroundColor: themes[theme!].surfaceLight }} vertical={isMasterDetail}>
+			<SafeAreaView testID='sidebar-view' style={{ backgroundColor: themes[theme!].surfaceLight}} vertical={isMasterDetail}>
+				<View style={{paddingLeft:40,justifyContent:'space-between',marginVertical:40}}>
+					<TouchableOpacity onPress={()=>navigation?.closeDrawer()}>
+						<CustomIcon 
+							name='close'
+							size={24}
+						/>
+					</TouchableOpacity>
+				</View>
 				<ScrollView
+					contentContainerStyle={{flex:1}}
 					style={[
 						styles.container,
 						{
@@ -336,40 +376,39 @@ class Sidebar extends Component<ISidebarProps, ISidebarState> {
 						}
 					]}
 					{...scrollPersistTaps}>
-					<TouchableWithoutFeedback onPress={this.onPressUser} testID='sidebar-close-drawer'>
-						<View style={styles.header}>
-							<Avatar text={user.username} style={styles.avatar} size={30} />
-							<View style={styles.headerTextContainer}>
-								<View style={styles.headerUsername}>
-									<Text numberOfLines={1} style={[styles.username, { color: themes[theme!].fontTitlesLabels }]}>
-										{useRealName ? user.name : user.username}
-									</Text>
-								</View>
-								<Text
-									style={[styles.currentServerText, { color: themes[theme!].fontTitlesLabels }]}
-									numberOfLines={1}
-									accessibilityLabel={`Connected to ${baseUrl}`}>
-									{Site_Name}
-								</Text>
-							</View>
-						</View>
-					</TouchableWithoutFeedback>
-
-					<List.Separator />
+					{/* <List.Separator /> */}
 					{this.renderSupportedVersionsWarn()}
-
-					<List.Separator />
-
-					{allowStatusMessage !== false ? this.renderCustomStatus() : null}
+					{/* <List.Separator /> */}
 					{!isMasterDetail ? (
 						<>
-							<List.Separator />
+							{/* <List.Separator /> */}
 							{this.renderNavigation()}
-							<List.Separator />
+							{/* <List.Separator /> */}
 						</>
 					) : (
 						<>{this.renderAdmin()}</>
 					)}
+					<View style={{flex:1,justifyContent:'flex-end'}}>
+						<TouchableWithoutFeedback onPress={this.onPressUser} testID='sidebar-close-drawer'>
+							<View style={styles.header}>
+								<Avatar text={user.username} style={styles.avatar} size={40} />
+								<View style={styles.headerTextContainer}>
+									<View style={styles.headerUsername}>
+										<Text numberOfLines={1} style={[styles.username, { color: themes[theme!].fontTitlesLabels }]}>
+											{useRealName ? user.name : user.username}
+										</Text>
+									</View>
+									{/* <Text
+										style={[styles.currentServerText, { color: themes[theme!].fontTitlesLabels }]}
+										numberOfLines={1}
+										accessibilityLabel={`Connected to ${baseUrl}`}>
+										{Site_Name}
+									</Text> */}
+								</View>
+							</View>
+						</TouchableWithoutFeedback>
+						{allowStatusMessage !== false ? this.renderCustomStatus() : null}
+					</View>
 				</ScrollView>
 			</SafeAreaView>
 		);

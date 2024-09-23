@@ -14,7 +14,7 @@ import { TThreadModel } from '../../definitions';
 const styles = StyleSheet.create({
 	container: {
 		flexDirection: 'row',
-		padding: 16
+		padding: 16,
 	},
 	contentContainer: {
 		flexDirection: 'column',
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
 		alignSelf: 'center'
 	},
 	messageContainer: {
-		flexDirection: 'row'
+		flexDirection: 'row',
 	},
 	markdown: {
 		flex: 1

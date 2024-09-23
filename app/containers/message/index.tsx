@@ -18,6 +18,7 @@ interface IMessageContainerProps {
 		username: string;
 		token: string;
 	};
+	isGroupRoom?:boolean;
 	msg?: string;
 	rid: string;
 	timeFormat?: string;
@@ -360,7 +361,8 @@ class MessageContainer extends React.Component<IMessageContainerProps, IMessageC
 			jumpToMessage,
 			highlighted,
 			isBeingEdited,
-			isPreview
+			isPreview,
+			isGroupRoom
 		} = this.props;
 		const {
 			id,
@@ -391,7 +393,7 @@ class MessageContainer extends React.Component<IMessageContainerProps, IMessageC
 			replies,
 			md,
 			comment,
-			pinned
+			pinned,
 		} = item;
 
 		let message = msg;
@@ -430,10 +432,12 @@ class MessageContainer extends React.Component<IMessageContainerProps, IMessageC
 					toggleFollowThread,
 					replies,
 					translateLanguage: canTranslateMessage ? autoTranslateLanguage : undefined,
-					isEncrypted: this.isEncrypted
+					isEncrypted: this.isEncrypted,
 				}}>
 				{/* @ts-ignore*/}
 				<Message
+					otherUserMessage={otherUserMessage}
+					isGroupRoom={isGroupRoom}
 					id={id}
 					msg={message}
 					md={md}

@@ -75,6 +75,7 @@ interface IRoomHeader {
 	testID?: string;
 	sourceType?: IOmnichannelSource;
 	disabled?: boolean;
+	data?:any;
 }
 
 const SubTitle = React.memo(({ usersTyping, subtitle, renderFunc, scale }: TRoomHeaderSubTitle) => {
@@ -141,13 +142,13 @@ const Header = React.memo(
 		testID,
 		usersTyping = [],
 		sourceType,
-		disabled
+		disabled,
+		data
 	}: IRoomHeader) => {
 		const { colors } = useTheme();
 		const portrait = height > width;
 		let scale = 1;
 		const isMasterDetail = useAppSelector(state => state.app.isMasterDetail);
-
 		if (!portrait && !tmid && !isMasterDetail) {
 			if (usersTyping.length > 0 || subtitle) {
 				scale = 0.8;

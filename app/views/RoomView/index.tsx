@@ -87,7 +87,9 @@ import {
 	canAutoTranslate as canAutoTranslateMethod,
 	debounce,
 	isIOS,
-	hasPermission
+	hasPermission,
+	isGroupChatCustom,
+	getRoomAvatar
 } from '../../lib/methods/helpers';
 import { Services } from '../../lib/services';
 import { withActionSheet } from '../../containers/ActionSheet';
@@ -104,6 +106,7 @@ import UserPreferences from '../../lib/methods/userPreferences';
 import { IRoomViewProps, IRoomViewState } from './definitions';
 import { roomAttrsUpdate, stateAttrsUpdate } from './constants';
 import { EncryptedRoom, MissingRoomE2EEKey } from './components';
+import { useAppSelector } from 'lib/hooks';
 
 class RoomView extends React.Component<IRoomViewProps, IRoomViewState> {
 	private rid?: string;
@@ -178,7 +181,8 @@ class RoomView extends React.Component<IRoomViewProps, IRoomViewState> {
 			canForwardGuest: false,
 			canReturnQueue: false,
 			canPlaceLivechatOnHold: false,
-			isOnHold: false
+			isOnHold: false,
+			avatarPicture:null
 		};
 
 		this.setHeader();
@@ -416,13 +420,12 @@ class RoomView extends React.Component<IRoomViewProps, IRoomViewState> {
 	}
 
 	setHeader = () => {
-		const { room, unreadsCount, roomUserId, joined, canForwardGuest, canReturnQueue, canPlaceLivechatOnHold } = this.state;
+		const { room, unreadsCount, roomUserId, joined, canForwardGuest, canReturnQueue, canPlaceLivechatOnHold,avatarPicture} = this.state;
 		const { navigation, isMasterDetail, theme, baseUrl, user, route, encryptionEnabled } = this.props;
 		const { rid, tmid } = this;
 		if (!room.rid) {
 			return;
 		}
-
 		const prid = room?.prid;
 		const isGroupChatConst = isGroupChat(room as ISubscription);
 		let title = route.params?.name;
@@ -457,7 +460,7 @@ class RoomView extends React.Component<IRoomViewProps, IRoomViewState> {
 			sourceType = room.source;
 			visitor = room.visitor;
 		}
-
+		const data = this.props.route.params
 		const t = room?.t;
 		const teamMain = 'teamMain' in room ? room?.teamMain : false;
 		const omnichannelPermissions = { canForwardGuest, canReturnQueue, canPlaceLivechatOnHold };
@@ -492,6 +495,7 @@ class RoomView extends React.Component<IRoomViewProps, IRoomViewState> {
 			),
 			headerTitle: () => (
 				<RoomHeader
+					data={data}
 					prid={prid}
 					tmid={tmid}
 					title={title}
@@ -1286,7 +1290,7 @@ class RoomView extends React.Component<IRoomViewProps, IRoomViewState> {
 		let dateSeparator = null;
 		let showUnreadSeparator = false;
 		const isBeingEdited = action === 'edit' && item.id === selectedMessages[0];
-
+		const isGroupChatConst = isGroupChatCustom(room as ISubscription);
 		if (!previousItem) {
 			dateSeparator = item.ts;
 			showUnreadSeparator = moment(item.ts).isAfter(lastOpen);
@@ -1314,6 +1318,7 @@ class RoomView extends React.Component<IRoomViewProps, IRoomViewState> {
 			content = (
 				<Message
 					item={item}
+					isGroupRoom={isGroupChatConst}
 					user={user as any}
 					rid={room.rid}
 					archived={'id' in room && room.archived}

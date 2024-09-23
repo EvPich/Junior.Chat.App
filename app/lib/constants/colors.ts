@@ -4,7 +4,7 @@ const light = {
 	surfaceLight: '#FFFFFF',
 	surfaceTint: '#F7F8FA',
 	surfaceRoom: '#FFFFFF',
-	surfaceNeutral: '#E4E7EA',
+	surfaceNeutral: 'rgba(236, 240, 243, 0.95)',
 	surfaceDisabled: '#F7F8FA',
 	surfaceHover: '#F2F3F5',
 	surfaceSelected: '#D7DBE0',

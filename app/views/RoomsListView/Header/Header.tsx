@@ -11,7 +11,7 @@ import { useAppSelector } from '../../../lib/hooks';
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		justifyContent: 'center'
+		justifyContent: 'center',
 	},
 	button: {
 		flexDirection: 'row',
@@ -78,7 +78,7 @@ const Header = React.memo(
 				{/* <TouchableOpacity onPress={onPress} testID='rooms-list-header-server-dropdown-button'> */}
 				<View style={styles.button}>
 					<Text style={[styles.title, { color: colors.fontTitlesLabels }]} numberOfLines={1}>
-						{serverName}
+						Channels
 					</Text>
 					{/* <CustomIcon
 							name='chevron-down'

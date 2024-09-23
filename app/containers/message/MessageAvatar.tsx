@@ -8,6 +8,7 @@ import { SubscriptionType } from '../../definitions';
 
 const MessageAvatar = React.memo(({ isHeader, avatar, author, small, navToRoomInfo, emoji, getCustomEmoji }: IMessageAvatar) => {
 	const { user } = useContext(MessageContext);
+	console.log('AVATAR',avatar)
 	if (isHeader && author) {
 		const onPress = () =>
 			navToRoomInfo({

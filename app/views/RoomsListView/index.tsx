@@ -892,7 +892,6 @@ class RoomsListView extends React.Component<IRoomsListViewProps, IRoomsListViewS
 
 	renderHeader = () => {
 		const { isMasterDetail, theme } = this.props;
-
 		if (!isMasterDetail) {
 			return null;
 		}

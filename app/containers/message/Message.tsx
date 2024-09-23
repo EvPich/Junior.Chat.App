@@ -21,7 +21,7 @@ import { IMessage, IMessageInner, IMessageTouchable } from './interfaces';
 import { useTheme } from '../../theme';
 import RightIcons from './Components/RightIcons';
 
-const MessageInner = React.memo((props: IMessageInner) => {
+const MessageInner = React.memo((props: IMessage) => {
 	if (props.isPreview) {
 		return (
 			<>
@@ -87,7 +87,7 @@ const Message = React.memo((props: IMessage) => {
 		return (
 			<View style={[styles.container, props.style]}>
 				{thread}
-				<View style={styles.flex}>
+				<View style={[styles.flex]}>
 					<MessageAvatar small {...props} />
 					<View style={[styles.messageContent, props.isHeader && styles.messageContentWithHeader]}>
 						<Content {...props} />
@@ -101,11 +101,10 @@ const Message = React.memo((props: IMessage) => {
 			</View>
 		);
 	}
-
 	return (
 		<View style={[styles.container, props.style]}>
-			<View style={styles.flex}>
-				<MessageAvatar {...props} />
+			<View style={[styles.flex]}>
+				{props.isGroupRoom && <MessageAvatar {...props} />}
 				<View style={[styles.messageContent, props.isHeader && styles.messageContentWithHeader]}>
 					<MessageInner {...props} />
 				</View>
@@ -117,6 +116,7 @@ const Message = React.memo((props: IMessage) => {
 						hasError={props.hasError}
 						isReadReceiptEnabled={props.isReadReceiptEnabled}
 						unread={props.unread}
+						otherUserMessage={props.otherUserMessage}
 						pinned={props.pinned}
 						isTranslated={props.isTranslated}
 					/>
@@ -148,15 +148,18 @@ const MessageTouchable = React.memo((props: IMessageTouchable & IMessage) => {
 	}
 
 	return (
-		<Touchable
-			onLongPress={onLongPress}
-			onPress={onPress}
-			disabled={(props.isInfo && !props.isThreadReply) || props.archived || props.isTemp || props.type === 'jitsi_call_started'}
-			style={{ backgroundColor }}>
-			<View>
-				<Message {...props} />
-			</View>
-		</Touchable>
+		<View style={{alignItems:props.otherUserMessage ? 'flex-start' : 'flex-end',paddingHorizontal:10,marginVertical:8}}>
+			<Touchable
+				onLongPress={onLongPress}
+				onPress={onPress}
+				disabled={(props.isInfo && !props.isThreadReply) || props.archived || props.isTemp || props.type === 'jitsi_call_started'}
+				style={{ backgroundColor:props.otherUserMessage ? '#F8F9FA' : '#CFD6E8',borderRadius:14,paddingRight:80}}>
+				<View>
+					<Message {...props} />
+				</View>
+			</Touchable>
+		</View>
+		
 	);
 });
 

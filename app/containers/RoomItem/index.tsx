@@ -74,9 +74,9 @@ const RoomItemContainer = React.memo(
 		if (date) {
 			accessibilityLabel = `, ${I18n.t('last_message')} ${date}`;
 		}
-
 		return (
 			<RoomItem
+				item={item}
 				name={name}
 				avatar={avatar}
 				isGroupChat={isGroupChat(item)}

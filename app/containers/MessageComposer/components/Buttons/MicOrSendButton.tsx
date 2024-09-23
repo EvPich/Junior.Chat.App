@@ -11,6 +11,7 @@ import { useRoomContext } from '../../../../views/RoomView/context';
 import { MessageInnerContext, useMessageComposerApi, useMicOrSend } from '../../context';
 import { useCanUploadFile } from '../../hooks';
 import { BaseButton } from './BaseButton';
+import { View } from 'react-native-animatable';
 
 export const MicOrSendButton = (): React.ReactElement | null => {
 	const { rid, sharing } = useRoomContext();
@@ -51,13 +52,15 @@ export const MicOrSendButton = (): React.ReactElement | null => {
 
 	if (micOrSend === 'send' || sharing) {
 		return (
-			<BaseButton
-				onPress={sendMessage}
-				testID='message-composer-send'
-				accessibilityLabel='Send_message'
-				icon='send-filled'
-				color={colors.strokeHighlight}
-			/>
+			<View style={{width:24,height:24,backgroundColor:'#254385',borderRadius:12}}>
+				<BaseButton
+					onPress={sendMessage}
+					testID='message-composer-send'
+					accessibilityLabel='Send_message'
+					icon='arrow-up'
+					color={'white'}
+				/>
+			</View>
 		);
 	}
 

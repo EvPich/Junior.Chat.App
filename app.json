@@ -3,7 +3,7 @@
 	"name": "RocketChatRN",
 	"share": "ShareRocketChatRN",
 	"displayName": "RocketChatRN",
-	"server": "",
+	"server": "https://junior.kipage.ru",
 	"appGroup": "group.rocketchat.rainbow",
 	"appStoreID": "1272915472"
 }

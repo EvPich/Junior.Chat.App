@@ -40,7 +40,7 @@ const Avatar = React.memo(
 		const avatarStyle = {
 			width: size,
 			height: size,
-			borderRadius
+			borderRadius:12
 		};
 
 		let image;
@@ -66,7 +66,7 @@ const Avatar = React.memo(
 					cdnPrefix
 				});
 			}
-
+			console.log('URI',uri)
 			image = (
 				<FastImage
 					style={avatarStyle}

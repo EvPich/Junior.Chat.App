@@ -368,6 +368,12 @@ const styles = StyleSheet.create({
 		fontSize: 16,
 		textAlignVertical: 'center',
 		...sharedStyles.textRegular,
-		lineHeight: 22
+		lineHeight: 22,
+		marginVertical:16,
+		borderWidth:1,
+		borderColor:'rgba(32, 32, 37, 0.08)',
+		borderRadius:16,
+		backgroundColor:'#F8F9FA',
+		paddingHorizontal:8,
 	}
 });

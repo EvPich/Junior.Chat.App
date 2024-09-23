@@ -15,7 +15,7 @@ export const Left = () => {
 		return null;
 	}
 	return (
-		<View style={{ height: MIN_HEIGHT, paddingRight: 12, justifyContent: 'center' }}>
+		<View style={{ height: MIN_HEIGHT, paddingRight: 12, justifyContent: 'center',paddingTop:32 }}>
 			<ActionsButton />
 		</View>
 	);

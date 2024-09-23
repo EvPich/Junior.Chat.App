@@ -4,19 +4,24 @@ import sharedStyles from '../Styles';
 
 export default StyleSheet.create({
 	container: {
-		flex: 1
+		flex: 1,
 	},
 	item: {
 		flexDirection: 'row',
-		alignItems: 'center'
+		alignItems: 'center',
+		paddingVertical:5,
+		paddingLeft:30
 	},
 	itemCurrent: {
 		backgroundColor: '#E1E5E8'
 	},
 	itemHorizontal: {
 		marginHorizontal: 10,
-		width: 30,
-		alignItems: 'center'
+		width: 40,
+		height:40,
+		borderRadius:12,
+		alignItems: 'center',
+		justifyContent:'center',
 	},
 	itemCenter: {
 		flex: 1
@@ -33,7 +38,8 @@ export default StyleSheet.create({
 	header: {
 		paddingVertical: 16,
 		flexDirection: 'row',
-		alignItems: 'center'
+		alignItems: 'center',
+		paddingLeft:25
 	},
 	headerTextContainer: {
 		flex: 1,
@@ -45,11 +51,11 @@ export default StyleSheet.create({
 		alignItems: 'center'
 	},
 	username: {
-		fontSize: 14,
-		...sharedStyles.textMedium
+		fontSize: 18,
+		...sharedStyles.textBold
 	},
 	avatar: {
-		marginHorizontal: 10
+		marginHorizontal: 10,
 	},
 	currentServerText: {
 		fontSize: 14,

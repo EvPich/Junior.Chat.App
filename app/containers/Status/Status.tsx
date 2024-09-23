@@ -1,6 +1,6 @@
 // @ts-nocheck
 import React from 'react';
-import { StyleProp, TextStyle } from 'react-native';
+import { StyleProp, TextStyle, View } from 'react-native';
 
 import { useTheme } from '../../theme';
 import { CustomIcon, IconSet, TIconsName } from '../CustomIcon';
@@ -18,19 +18,19 @@ const Status = React.memo(({ style, status = 'offline', size = 32, ...props }: I
 		{
 			width: size,
 			height: size,
-			textAlignVertical: 'center'
+			textAlignVertical: 'center',
 		},
 		style
 	];
 
 	return (
-		<CustomIcon
-			{...props}
-			style={calculatedStyle}
-			size={size}
-			name={iconName}
-			color={userStatusColor ?? colors.userPresenceOffline}
-		/>
+			<CustomIcon
+				{...props}
+				style={[calculatedStyle,{paddingTop:1}]}
+				size={size}
+				name={iconName}
+				color={userStatusColor ?? colors.userPresenceOffline}
+			/>
 	);
 });
 

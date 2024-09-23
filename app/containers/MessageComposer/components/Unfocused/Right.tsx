@@ -14,7 +14,7 @@ export const Right = () => {
 		return null;
 	}
 	return (
-		<View style={{ height: MIN_HEIGHT, paddingLeft: 12, alignItems: 'center', flexDirection: 'row' }}>
+		<View style={{ height: MIN_HEIGHT, paddingLeft: 12, alignItems: 'center', flexDirection: 'row',paddingTop:32 }}>
 			<CancelEdit />
 			<MicOrSendButton />
 		</View>

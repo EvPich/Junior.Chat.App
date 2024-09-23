@@ -60,4 +60,5 @@ export interface IRoomViewState {
 	roomUserId?: string | null;
 	action: TMessageAction;
 	selectedMessages: string[];
+	avatarPicture:any
 }

@@ -16,7 +16,7 @@ export const defaultHeader = {
 };
 
 export const cardStyle = {
-	backgroundColor: 'rgba(0,0,0,0)'
+	backgroundColor: 'rgba(0,0,0,0)',
 };
 
 export const borderBottom: any = (theme: TSupportedThemes) => ({
@@ -26,7 +26,7 @@ export const borderBottom: any = (theme: TSupportedThemes) => ({
 });
 
 export const drawerStyle = {
-	width: 320
+	width: 320,
 };
 
 // TODO: Remove it once we migrate dropdowns to action sheet
@@ -35,10 +35,10 @@ export const headerHeight = isIOS ? 50 : 56;
 export const themedHeader = (theme: TSupportedThemes) => ({
 	headerStyle: {
 		...borderBottom(theme),
-		backgroundColor: themes[theme].surfaceNeutral
+		backgroundColor: themes[theme].surfaceNeutral,
 	},
 	headerTintColor: themes[theme].fontDefault,
-	headerTitleStyle: { ...sharedStyles.textSemibold, color: themes[theme].fontTitlesLabels, fontSize: 18 }
+	headerTitleStyle: { ...sharedStyles.textSemibold, color: themes[theme].fontTitlesLabels, fontSize: 18 },
 });
 
 export const navigationTheme = (theme: TSupportedThemes) => {

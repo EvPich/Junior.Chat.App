@@ -26,7 +26,7 @@ export default StyleSheet.create({
 		paddingVertical: 12,
 		paddingHorizontal: 15,
 		flexDirection: 'row',
-		alignItems: 'center'
+		alignItems: 'center',
 	},
 	bannerText: {
 		flex: 1

@@ -10,13 +10,13 @@ import RightIcons from './Components/RightIcons';
 import MessageContext from './Context';
 import messageStyles from './styles';
 import { messageHaveAuthorName } from './utils';
+import { IMessage } from './interfaces';
 
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		flexDirection: 'row',
-		justifyContent: 'space-between',
-		alignItems: 'center'
+		alignItems: 'center',
 	},
 	actionIcons: {
 		flexDirection: 'row',
@@ -62,6 +62,7 @@ interface IMessageUser {
 	unread?: boolean;
 	pinned?: boolean;
 	isTranslated: boolean;
+	otherUserMessage?:boolean;
 }
 
 const User = React.memo(
@@ -120,6 +121,7 @@ const User = React.memo(
 						<Text style={[messageStyles.time, { color: colors.fontSecondaryInfo }]}>{time}</Text>
 					</TouchableOpacity>
 					<RightIcons
+						otherUserMessage={props.otherUserMessage}
 						type={type}
 						isEdited={isEdited}
 						hasError={hasError}
