@@ -42,7 +42,7 @@ export const themedHeader = (theme: TSupportedThemes) => ({
 });
 
 export const navigationTheme = (theme: TSupportedThemes) => {
-	const defaultNavTheme = theme === 'light' ? DefaultTheme : DarkTheme;
+	const defaultNavTheme = theme === 'light' ? DefaultTheme : DefaultTheme;
 
 	return {
 		...defaultNavTheme,

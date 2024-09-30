@@ -36,6 +36,7 @@ export default StyleSheet.create({
 	},
 	text: {
 		fontSize: 16,
+		paddingRight:25,
 		...sharedStyles.textRegular
 	},
 	textInfo: {

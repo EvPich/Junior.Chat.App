@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 
 import sharedStyles from '../../views/Styles';
 import { isTablet } from '../../lib/methods/helpers';
@@ -18,7 +18,7 @@ export default StyleSheet.create({
 	},
 	messageContent: {
 		// flex: 1,
-		// marginLeft: 46
+		// marginLeft: 46,
 	},
 	messageContentWithHeader: {
 		marginLeft: 10

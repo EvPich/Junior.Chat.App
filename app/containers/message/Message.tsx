@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { View } from 'react-native';
+import { Dimensions, View } from 'react-native';
 import Touchable from 'react-native-platform-touchable';
 
 import MessageContext from './Context';
@@ -153,7 +153,12 @@ const MessageTouchable = React.memo((props: IMessageTouchable & IMessage) => {
 				onLongPress={onLongPress}
 				onPress={onPress}
 				disabled={(props.isInfo && !props.isThreadReply) || props.archived || props.isTemp || props.type === 'jitsi_call_started'}
-				style={{ backgroundColor:props.otherUserMessage ? '#F8F9FA' : '#CFD6E8',borderRadius:14,paddingRight:80}}>
+				style={{ backgroundColor:props.otherUserMessage ? '#F8F9FA' : '#CFD6E8',
+						 borderRadius:14,
+						 marginLeft:props.otherUserMessage ? 0 : 20,
+						 marginRight:props.otherUserMessage ? 20 : 0,
+						 maxWidth:350
+					}}>
 				<View>
 					<Message {...props} />
 				</View>

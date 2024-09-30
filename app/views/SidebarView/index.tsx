@@ -286,7 +286,10 @@ class Sidebar extends Component<ISidebarProps, ISidebarState> {
 	renderCustomStatus = () => {
 
 		function capitalizeFirstLetter(str:string) {
-			return str.charAt(0).toUpperCase() + str.slice(1);
+			if(str){
+				return str.charAt(0).toUpperCase() + str.slice(1);
+			}else return str
+
 		  }
 
 		const { user, theme, Presence_broadcast_disabled, notificationPresenceCap } = this.props;

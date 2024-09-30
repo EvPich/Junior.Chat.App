@@ -8,7 +8,10 @@ export function isGroupChat(room): boolean {
 }
 
 export function isGroupChatCustom(room): boolean {
-   return room?._raw.users_count > 2
+	if(room?._raw?.users_count){
+		return room?._raw.users_count > 2
+	}
+
 }
 
 export function getRoomAvatar(room) {

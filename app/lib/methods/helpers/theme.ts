@@ -21,9 +21,9 @@ export const initialTheme = (): IThemePreference => {
 
 export const defaultTheme = (): TThemeMode => {
 	const systemTheme = Appearance.getColorScheme();
-	if (systemTheme) {
-		return systemTheme;
-	}
+	// if (systemTheme) {
+	// 	return systemTheme;
+	// }
 	return 'light';
 };
 

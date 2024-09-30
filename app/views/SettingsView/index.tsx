@@ -217,12 +217,12 @@ const SettingsView = (): React.ReactElement => {
 						testID='settings-view-default-browser'
 					/>
 					<List.Separator />
-					<List.Item
+					{/* <List.Item
 						title='Theme'
 						showActionIndicator
 						onPress={() => navigateToScreen('ThemeView')}
 						testID='settings-view-theme'
-					/>
+					/> */}
 					<List.Separator />
 					<List.Item
 						title='Media_auto_download'
