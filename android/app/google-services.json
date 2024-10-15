@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:520505264331:android:f82b06749094a5282cb34e",
+        "mobilesdk_app_id": "1:520505264331:android:e07e3e22a6f1a4a22cb34e",
         "android_client_info": {
-          "package_name": "chat.rocket.reactnative"
+          "package_name": "fayrix.junior.chat"
         }
       },
       "oauth_client": [],
